@@ -1,0 +1,51 @@
+server:
+  port: 8032
+
+datasource:
+  host: localhost
+  port: 3306
+  database: taget_database
+
+variableurl:
+  testPath: /test
+
+logging:
+  config:
+    classpath: logback.xml  //记得加classpath
+  level:
+    com.simple.demo.mydemo: debug
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui
+    enabled: true
+  api-docs:
+    path: /v3/api-docs
+    enabled: true
+  # 配置需要生成接口文档的扫描包
+  packages-to-scan: com.simple.demo.mydemo.controller
+  # 配置需要生成接口文档的接口路径
+  paths-to-match: /**
+
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://${datasource.host}:${datasource.port}/${datasource.database}?useUnicode=true&characterEncoding=UTF-8&useSSL=false&serverTimezone=Asia/Shanghai
+    username: root
+    password: 123456
+    hikari:
+      maximum-pool-size: 10 # 最大连接池数
+      max-lifetime: 1800000
+  thymeleaf:
+    cache: false #关闭缓存
+
+
+mybatis:
+  # 指定别名设置的包为所有entity
+  type-aliases-package: net.sayurinana.server.api
+  configuration:
+    map-underscore-to-camel-case: true #支持驼峰命名规范
+  mapper-locations: classpath:mapper/api/*.xml # mapper映射文件位置
+
+
