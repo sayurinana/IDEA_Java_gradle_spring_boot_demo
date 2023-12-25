@@ -15,6 +15,7 @@
 *.tar.gz
 *.rar
 *.iml
+*.7z
 
 # local cache
 .idea/
